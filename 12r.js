@@ -60,8 +60,7 @@ let divHTML = `
 let br=0;
 
 document.querySelector('.js-reset-button').addEventListener('click', () => {
-  if (br>0) {
-    br = 0;
+  if (warningContainer.innerHTML.trim() !== '') {
     return;
   }
 
