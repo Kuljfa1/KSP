@@ -19,9 +19,8 @@ document.querySelector('.js-auto-play-button').addEventListener('click', () => {
 document.querySelector('.js-reset-button').addEventListener('click', () => {
   const warningContainer = document.querySelector('.warningContainer');
 
-  if (warningContainer.innerHTML.trim() !== '') {
-    return;
-  }
+  // Clear any existing warning before adding a new one
+  warningContainer.innerHTML = '';
 
   warningContainer.innerHTML = `
     <p class="warningText">Are you sure you want to reset the score?</p>
@@ -35,11 +34,11 @@ document.querySelector('.js-reset-button').addEventListener('click', () => {
     score.ties = 0;
     localStorage.removeItem('score');
     updateScoreElement();
-    warningContainer.innerHTML = '';
+    warningContainer.innerHTML = ''; // Clear the warning after resetting
   });
 
   document.querySelector('.noButton').addEventListener('click', () => {
-    warningContainer.innerHTML = '';
+    warningContainer.innerHTML = ''; // Clear the warning if "No" is clicked
   });
 });
 
@@ -90,6 +89,7 @@ document.body.addEventListener('keydown', (event) => {
 
 function playGame(playerMove) {
   computerMove = pickComputerMove();
+
   result = '';
 
   if (playerMove === 'scissors') {
@@ -133,17 +133,18 @@ function playGame(playerMove) {
   document.querySelector('.js-result').innerHTML = result;
 
   document.querySelector('.js-moves').innerHTML = `You
-<img src="/Lessons/images/${playerMove}-emoji.png" class="move-icon">
-<img src="/Lessons/images/${computerMove}-emoji.png" class="move-icon">
-Computer`;
+    <img src="/Lessons/images/${playerMove}-emoji.png" class="move-icon" >
+    <img src="/Lessons/images/${computerMove}-emoji.png" class="move-icon">
+    Computer`;
 }
 
 function updateScoreElement() {
-  document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+  document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses ${score.losses}, Ties: ${score.ties}`;
 }
 
 function pickComputerMove() {
   let computerMove = '';
+
   const randomNumber = Math.random();
 
   if (randomNumber >= 0 && randomNumber < 1 / 3) {
