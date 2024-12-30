@@ -200,8 +200,8 @@ result ='';
 
   document.querySelector('.js-moves')
     .innerHTML = `You
-<img src="/Lessons/images/${playerMove}-emoji.png" class="move-icon" >
-<img src="/Lessons/images/${computerMove}-emoji.png" class="move-icon">
+<img src="${playerMove}-emoji.png" class="move-icon" >
+<img src="${computerMove}-emoji.png" class="move-icon">
 Computer`;
 
   
